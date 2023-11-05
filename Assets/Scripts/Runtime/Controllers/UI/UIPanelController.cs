@@ -39,7 +39,7 @@ namespace Runtime.Controllers.UI
 #if UNITY_EDITOR
                 DestroyImmediate(layer.GetChild(0).gameObject);
 #else
-                Destroy(layers[value].GetChild(0).gameObject);
+                Destroy(layer.GetChild(0).gameObject);
 #endif
             }
         }
