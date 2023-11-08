@@ -37,7 +37,6 @@ namespace Runtime.Controllers.UI
             {
                 if (layer.childCount <= 0) return;
 #if UNITY_EDITOR
-                DestroyImmediate(layer.GetChild(0).gameObject);
 #else
                 Destroy(layer.GetChild(0).gameObject);
 #endif
