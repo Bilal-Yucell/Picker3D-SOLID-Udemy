@@ -474,7 +474,7 @@ GameObject:
   - component: {fileID: 606088289731532621}
   - component: {fileID: 752450024291669843}
   - component: {fileID: 7880158125136310314}
-  - component: {fileID: 6461654031634728849}
+  - component: {fileID: 1321895283796289091}
   m_Layer: 5
   m_Name: RestartButton
   m_TagString: Untagged
@@ -585,7 +585,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &6461654031634728849
+--- !u!114 &1321895283796289091
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -597,5 +597,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8955531cbc8476a866b9f162eadfa18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
+  type: 0
   button: {fileID: 7880158125136310314}
