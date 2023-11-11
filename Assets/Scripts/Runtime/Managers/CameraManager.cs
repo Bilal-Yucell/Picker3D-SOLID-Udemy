@@ -1,9 +1,7 @@
-using System;
 using Cinemachine;
 using Runtime.Signals;
 using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 namespace Runtime.Managers
 {
@@ -39,20 +37,20 @@ namespace Runtime.Managers
         {
             SubscribeEvents();
         }
-        
+
         private void SubscribeEvents()
         {
             CameraSignals.Instance.onSetCameraTarget += OnSetCameraTarget;
             CoreGameSignals.Instance.onReset += OnReset;
         }
-        
+
         private void OnSetCameraTarget()
         {
             var player = FindObjectOfType<PlayerManager>().transform;
             virtualCamera.Follow = player;
             //virtualCamera.LookAt = player;
         }
-        
+
         private void OnReset()
         {
             transform.position = _firstPosition;
@@ -63,11 +61,10 @@ namespace Runtime.Managers
             CameraSignals.Instance.onSetCameraTarget -= OnSetCameraTarget;
             CoreGameSignals.Instance.onReset -= OnReset;
         }
-        
+
         private void OnDisable()
         {
             UnSubscribeEvents();
         }
-
     }
 }

@@ -1,4 +1,3 @@
-using System;
 using Runtime.Data.ValueObjects;
 using Runtime.Keys;
 using Sirenix.OdinInspector;
@@ -10,7 +9,7 @@ namespace Runtime.Controllers.Player
     public class PlayerMovementController : MonoBehaviour
     {
         #region Self Variables
-        
+
         #region Serialized Variables
 
         [SerializeField] private new Rigidbody rigidbody;
@@ -22,7 +21,7 @@ namespace Runtime.Controllers.Player
         [ShowInInspector] private PlayerMovementData _data;
         [ShowInInspector] private bool _isReadyToMove, _isReadyToPlay;
         [ShowInInspector] private float _xValue;
-        
+
         private float2 _clampValues;
 
         #endregion
@@ -57,13 +56,13 @@ namespace Runtime.Controllers.Player
             rigidbody.velocity = Vector3.zero;
             rigidbody.angularVelocity = Vector3.zero;
         }
-        
+
         private void StopPlayerHorizontally()
         {
             rigidbody.velocity = new Vector3(0, rigidbody.velocity.y, _data.ForwardSpeed);
             rigidbody.angularVelocity = Vector3.zero;
         }
-        
+
         private void MovePlayer()
         {
             var velocity = rigidbody.velocity;
@@ -80,12 +79,12 @@ namespace Runtime.Controllers.Player
         {
             _isReadyToPlay = condition;
         }
-        
+
         internal void IsReadyToMove(bool condition)
         {
             _isReadyToMove = condition;
         }
-        
+
         internal void UpdateInputParams(HorizontalInputParams inputParams)
         {
             _xValue = inputParams.HorizontalValue;

@@ -15,8 +15,8 @@ namespace Runtime.Extensions
                     _instance = FindObjectOfType<T>();
                     if (_instance == null)
                     {
-                        GameObject newGameObject = new GameObject(typeof(T).Name);
-                        _instance = newGameObject.AddComponent<T>();
+                        GameObject newGO = new GameObject();
+                        _instance = newGO.AddComponent<T>();
                     }
                 }
 
@@ -24,7 +24,7 @@ namespace Runtime.Extensions
             }
         }
 
-        protected void Awake()
+        protected virtual void Awake()
         {
             _instance = this as T;
         }

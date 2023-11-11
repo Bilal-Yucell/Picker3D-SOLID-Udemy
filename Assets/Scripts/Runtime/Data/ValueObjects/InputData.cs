@@ -1,5 +1,5 @@
 using System;
-using UnityEngine;
+using Unity.Mathematics;
 
 namespace Runtime.Data.ValueObjects
 {
@@ -7,7 +7,14 @@ namespace Runtime.Data.ValueObjects
     public struct InputData
     {
         public float HorizontalInputSpeed;
-        public Vector2 ClampValues;
+        public float2 ClampValues;
         public float ClampSpeed;
+
+        public InputData(float horizontalInputSpeed, float2 clampValues, float clampSpeed)
+        {
+            HorizontalInputSpeed = horizontalInputSpeed;
+            ClampValues = clampValues;
+            ClampSpeed = clampSpeed;
+        }
     }
 }

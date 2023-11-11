@@ -10,20 +10,20 @@ namespace Runtime.Data.ValueObjects
         public PlayerMeshData MeshData;
         public PlayerForceData ForceData;
     }
-    
+
     [Serializable]
     public struct PlayerMovementData
     {
         public float ForwardSpeed;
         public float SidewaySpeed;
     }
-    
+
     [Serializable]
     public struct PlayerMeshData
     {
         public float ScaleCounter;
     }
-    
+
     [Serializable]
     public struct PlayerForceData
     {

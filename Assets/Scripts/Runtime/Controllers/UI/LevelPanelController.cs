@@ -20,12 +20,12 @@ namespace Runtime.Controllers.UI
         #endregion
 
         #endregion
-        
+
         private void OnEnable()
         {
             SubscribeEvents();
         }
-        
+
         private void SubscribeEvents()
         {
             UISignals.Instance.onSetLevelValue += OnSetLevelValue;
@@ -35,7 +35,7 @@ namespace Runtime.Controllers.UI
         [Button("SetStageColor")]
         private void OnSetStageColor(byte stageValue)
         {
-            stageImages[stageValue].DOColor(Color.cyan, 0.5f);
+            stageImages[stageValue].DOColor(new Color(0.9960785f, 0.4196079f, 0.07843138f), 0.5f);
         }
 
         private void OnSetLevelValue(byte levelValue)
@@ -51,11 +51,10 @@ namespace Runtime.Controllers.UI
             UISignals.Instance.onSetLevelValue -= OnSetLevelValue;
             UISignals.Instance.onSetStageColor -= OnSetStageColor;
         }
-        
+
         private void OnDisable()
         {
             UnSubscribeEvents();
         }
-
     }
 }

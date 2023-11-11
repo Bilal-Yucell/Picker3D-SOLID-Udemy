@@ -3,6 +3,7 @@ using Runtime.Data.UnityObjects;
 using Runtime.Data.ValueObjects;
 using Runtime.Keys;
 using Runtime.Signals;
+using Sirenix.OdinInspector;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -15,8 +16,8 @@ namespace Runtime.Managers
 
         #region Private Variables
 
-        private InputData _data;
-        private bool _isAvailableForTouch, _isFirstTouchTaken, _isTouching;
+        [ShowInInspector] private InputData _data;
+        [ShowInInspector] private bool _isAvailableForTouch, _isFirstTimeTouchTaken, _isTouching;
 
         private float _currentVelocity;
         private float3 _moveVector;
@@ -52,7 +53,7 @@ namespace Runtime.Managers
         {
             _isAvailableForTouch = false;
         }
-        
+
         private void OnEnableInput()
         {
             _isAvailableForTouch = true;
@@ -61,17 +62,17 @@ namespace Runtime.Managers
         private void OnReset()
         {
             _isAvailableForTouch = false;
-            // _isFirstTouchTaken = false;
+            //_isFirstTimeTouchTaken = false;
             _isTouching = false;
         }
-        
+
         private void UnSubscribeEvents()
         {
             CoreGameSignals.Instance.onReset -= OnReset;
             InputSignals.Instance.onEnableInput -= OnEnableInput;
             InputSignals.Instance.onDisableInput -= OnDisableInput;
         }
-        
+
         private void OnDisable()
         {
             UnSubscribeEvents();
@@ -85,19 +86,16 @@ namespace Runtime.Managers
             {
                 _isTouching = false;
                 InputSignals.Instance.onInputReleased?.Invoke();
-                Debug.LogWarning("Executed ---> OnInputReleased");
             }
 
             if (Input.GetMouseButtonDown(0) && !IsPointerOverUIElement())
             {
                 _isTouching = true;
                 InputSignals.Instance.onInputTaken?.Invoke();
-                Debug.LogWarning("Executed ---> OnInputTaken");
-                if (!_isFirstTouchTaken)
+                if (!_isFirstTimeTouchTaken)
                 {
-                    _isFirstTouchTaken = true;
+                    _isFirstTimeTouchTaken = true;
                     InputSignals.Instance.onFirstTimeTouchTaken?.Invoke();
-                    Debug.LogWarning("Executed ---> OnFirstTimeTouchTaken");
                 }
 
                 _mousePosition = Input.mousePosition;
@@ -110,24 +108,23 @@ namespace Runtime.Managers
                     if (_mousePosition != null)
                     {
                         Vector2 mouseDeltaPos = (Vector2)Input.mousePosition - _mousePosition.Value;
-                         if (mouseDeltaPos.x > _data.HorizontalInputSpeed)
-                             _moveVector.x = _data.HorizontalInputSpeed / 10f * mouseDeltaPos.x;
+                        if (mouseDeltaPos.x > _data.HorizontalInputSpeed)
+                            _moveVector.x = _data.HorizontalInputSpeed / 10f * mouseDeltaPos.x;
                         else if (mouseDeltaPos.x < -_data.HorizontalInputSpeed)
-                             _moveVector.x = -_data.HorizontalInputSpeed / 10f * -mouseDeltaPos.x;
-                        else 
-                             _moveVector.x = Mathf.SmoothDamp(_moveVector.x, 0f,
-                                 ref _currentVelocity, _data.ClampSpeed);
-                        
+                            _moveVector.x = -_data.HorizontalInputSpeed / 10f * -mouseDeltaPos.x;
+                        else
+                            _moveVector.x = Mathf.SmoothDamp(_moveVector.x, 0f, ref _currentVelocity,
+                                _data.ClampSpeed);
+
                         _moveVector.x = mouseDeltaPos.x;
 
                         _mousePosition = Input.mousePosition;
-                        
+
                         InputSignals.Instance.onInputDragged?.Invoke(new HorizontalInputParams()
                         {
-                            HorizontalValue = _moveVector.x, 
-                            ClampValues = _data.ClampSpeed
+                            HorizontalValue = _moveVector.x,
+                            ClampValues = _data.ClampValues
                         });
-                        Debug.LogWarning($"Executed ---> OnInputDragged");
                     }
                 }
             }

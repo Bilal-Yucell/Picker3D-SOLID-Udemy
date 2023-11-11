@@ -5,6 +5,7 @@ namespace Runtime.Commands.Level
     public class OnLevelDestroyerCommand
     {
         private Transform _levelHolder;
+
         internal OnLevelDestroyerCommand(Transform levelHolder)
         {
             _levelHolder = levelHolder;
@@ -12,7 +13,7 @@ namespace Runtime.Commands.Level
 
         internal void Execute()
         {
-            if(_levelHolder.transform.childCount <= 0) return;
+            if (_levelHolder.transform.childCount <= 0) return;
             Object.Destroy(_levelHolder.transform.GetChild(0).gameObject);
         }
     }

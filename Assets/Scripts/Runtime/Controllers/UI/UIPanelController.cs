@@ -17,19 +17,19 @@ namespace Runtime.Controllers.UI
         #endregion
 
         #endregion
-        
+
         private void OnEnable()
         {
             SubscribeEvents();
         }
-        
+
         private void SubscribeEvents()
         {
             CoreUISignals.Instance.onClosePanel += OnClosePanel;
             CoreUISignals.Instance.onOpenPanel += OnOpenPanel;
             CoreUISignals.Instance.onCloseAllPanels += OnCloseAllPanels;
         }
-        
+
         [Button("Close All Panels")]
         private void OnCloseAllPanels()
         {
@@ -37,12 +37,13 @@ namespace Runtime.Controllers.UI
             {
                 if (layer.childCount <= 0) return;
 #if UNITY_EDITOR
+                DestroyImmediate(layer.GetChild(0).gameObject);
 #else
                 Destroy(layer.GetChild(0).gameObject);
 #endif
             }
         }
-        
+
         [Button("Open Panel")]
         private void OnOpenPanel(UIPanelTypes panelType, int value)
         {
@@ -54,8 +55,9 @@ namespace Runtime.Controllers.UI
         private void OnClosePanel(int value)
         {
             if (layers[value].childCount <= 0) return;
+
 #if UNITY_EDITOR
-                DestroyImmediate(layers[value].GetChild(0).gameObject);
+            DestroyImmediate(layers[value].GetChild(0).gameObject);
 #else
                 Destroy(layers[value].GetChild(0).gameObject);
 #endif
@@ -67,7 +69,7 @@ namespace Runtime.Controllers.UI
             CoreUISignals.Instance.onOpenPanel -= OnOpenPanel;
             CoreUISignals.Instance.onCloseAllPanels -= OnCloseAllPanels;
         }
-        
+
         private void OnDisable()
         {
             UnSubscribeEvents();

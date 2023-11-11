@@ -17,3 +17,7 @@ MonoBehaviour:
     - RequiredObjectCount: 10
     - RequiredObjectCount: 20
     - RequiredObjectCount: 30
+  - Pools:
+    - RequiredObjectCount: 12
+    - RequiredObjectCount: 22
+    - RequiredObjectCount: 28

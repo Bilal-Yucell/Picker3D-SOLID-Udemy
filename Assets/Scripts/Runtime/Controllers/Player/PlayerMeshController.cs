@@ -1,5 +1,6 @@
 using DG.Tweening;
 using Runtime.Data.ValueObjects;
+using Runtime.Managers;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
@@ -9,48 +10,53 @@ namespace Runtime.Controllers.Player
     public class PlayerMeshController : MonoBehaviour
     {
         #region Self Variables
-        
+
         #region Serialized Variables
 
+        [SerializeField] private PlayerManager manager;
         [SerializeField] private new Renderer renderer;
         [SerializeField] private TextMeshPro scaleText;
-        [SerializeField] private ParticleSystem confetti;
+        [SerializeField] private ParticleSystem confettiParticle;
 
         #endregion
 
         #region Private Variables
 
         [ShowInInspector] private PlayerMeshData _data;
+        [ShowInInspector] private PoolData _poolData;
 
         #endregion
 
         #endregion
 
-        internal void SetData(PlayerMeshData data)
+        private void Awake()
         {
-            _data = data;
+            scaleText.gameObject.SetActive(false);
         }
-        
+
+        internal void SetData(PlayerMeshData scaleData)
+        {
+            _data = scaleData;
+        }
+
         internal void ScaleUpPlayer()
         {
-            renderer.gameObject.transform.DOScaleX(_data.ScaleCounter, 1)
-                .SetEase(Ease.Flash);
+            renderer.gameObject.transform.DOScaleX(_data.ScaleCounter, 1).SetEase(Ease.Flash);
         }
-        
+
         internal void ShowUpText()
         {
-            scaleText.DOFade(1, 0).SetEase(Ease.Flash).OnComplete(() =>
-                {
-                    scaleText.DOFade(0, .30f).SetDelay(.35f);
-                    scaleText.rectTransform.DOAnchorPosY(1f, .65f).SetEase(Ease.Linear);
-                });
+            scaleText.gameObject.SetActive(true);
+            scaleText.DOFade(1, 0f).SetEase(Ease.Flash).OnComplete(() => scaleText.DOFade(0, 0).SetDelay(.65f));
+            scaleText.rectTransform.DOAnchorPosY(.85f, .65f).SetRelative(true).SetEase(Ease.OutBounce).OnComplete(() =>
+                scaleText.rectTransform.DOAnchorPosY(-.85f, .65f).SetRelative(true));
         }
-        
-        internal void PlayConfetti()
+
+        internal void PlayConfetiParticle()
         {
-            confetti.Play();
+            confettiParticle.Play();
         }
-        
+
         internal void OnReset()
         {
             renderer.gameObject.transform.DOScaleX(1, 1).SetEase(Ease.Linear);
