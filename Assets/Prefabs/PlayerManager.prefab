@@ -98,9 +98,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73c800fcc3e949f1b250d75ef5b38597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manager: {fileID: 0}
   renderer: {fileID: 7132926743106783625}
   scaleText: {fileID: 0}
-  confetti: {fileID: 0}
+  confettiParticle: {fileID: 0}
 --- !u!1 &5018737319844696453
 GameObject:
   m_ObjectHideFlags: 0

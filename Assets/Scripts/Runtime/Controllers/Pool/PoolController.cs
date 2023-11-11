@@ -16,7 +16,7 @@ namespace Runtime.Controllers.Pool
 
         #region Serialized Variables
 
-        [SerializeField] private List<DOTweenAnimation> tweens = new List<DOTweenAnimation>();
+        // [SerializeField] private List<DOTweenAnimation> tweens = new List<DOTweenAnimation>();
         [SerializeField] private TextMeshPro poolText;
         [SerializeField] private byte stageID;
         [SerializeField] private new Renderer renderer;
@@ -53,10 +53,11 @@ namespace Runtime.Controllers.Pool
 
         private void SubscribeEvents()
         {
-            CoreGameSignals.Instance.onStageAreaSuccessful += OnActivateTweens;
+            // CoreGameSignals.Instance.onStageAreaSuccessful += OnActivateTweens;
             CoreGameSignals.Instance.onStageAreaSuccessful += OnChangePoolColor;
         }
 
+        /*
         private void OnActivateTweens(byte stageValue)
         {
             if (stageValue != stageID) return;
@@ -65,7 +66,8 @@ namespace Runtime.Controllers.Pool
                 tween.DOPlay();
             }
         }
-
+        */
+        
         private void OnChangePoolColor(byte stageValue)
         {
             if (stageValue != stageID) return;
@@ -125,7 +127,7 @@ namespace Runtime.Controllers.Pool
 
         private void UnSubscribeEvents()
         {
-            CoreGameSignals.Instance.onStageAreaSuccessful -= OnActivateTweens;
+            // CoreGameSignals.Instance.onStageAreaSuccessful -= OnActivateTweens;
             CoreGameSignals.Instance.onStageAreaSuccessful -= OnChangePoolColor;
         }
 
