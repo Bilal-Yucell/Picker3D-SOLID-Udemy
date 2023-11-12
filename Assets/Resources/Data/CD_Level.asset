@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: CD_Level
   m_EditorClassIdentifier: 
   Levels:
-  - Pools:
-    - RequiredObjectCount: 10
-    - RequiredObjectCount: 20
-    - RequiredObjectCount: 30
-  - Pools:
+  - PoolList:
     - RequiredObjectCount: 12
     - RequiredObjectCount: 22
     - RequiredObjectCount: 28
+  - PoolList:
+    - RequiredObjectCount: 14
+    - RequiredObjectCount: 24
+    - RequiredObjectCount: 36

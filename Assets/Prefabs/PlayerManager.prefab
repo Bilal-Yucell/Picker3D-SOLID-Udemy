@@ -100,7 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manager: {fileID: 0}
   renderer: {fileID: 7132926743106783625}
-  scaleText: {fileID: 0}
+  scaleText: {fileID: 2801304940964714667}
   confettiParticle: {fileID: 0}
 --- !u!1 &5018737319844696453
 GameObject:
@@ -459,6 +459,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 711234909782183763}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2801304940964714667 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3404418272594171896, guid: ecd13c476120f49d1821e14878de3bc5,
+    type: 3}
+  m_PrefabInstance: {fileID: 711234909782183763}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7160552024132191367
 PrefabInstance:
   m_ObjectHideFlags: 0
